@@ -10,12 +10,13 @@ from . import router, templates
 async def user_home_view(
     request: Request,
     user: AuthDep,
-    db:SessionDep
+    db: SessionDep
 ):
     return templates.TemplateResponse(
         request=request, 
         name="app.html",
         context={
-            "user": user
+            "user": user,
+            "todos": user.todos,
         }
     )

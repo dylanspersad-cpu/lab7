@@ -4,27 +4,32 @@
 <script src="{{ url_for('static', path='js/app.js')}}"></script>
 {% endblock %}
 
-
 {% block subpage_content %}
-
-    <div class="container" id="content">
-        <div class="row">
-            <p>
-                This is table is rendered on the Client. JavaScript code requests the data from <a href="/api/users">/api/users</a> and writes it to this page.
-            </p>
-        </div>
-        <div class="row">
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Id</th><th>Username</th>
-                  </tr>
-                </thead>
-                <tbody id="result">
-                
-                <tbody>
-            </table>
+<div class="container" id="content">
+    <div class="row mb-3">
+        <div class="col">
+            <h4>My Todos</h4>
         </div>
     </div>
-
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Text</th>
+                    <th>Done</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                <tr>
+                    <td>{{ todo.id }}</td>
+                    <td>{{ todo.text }}</td>
+                    <td>{{ "Yes" if todo.done else "No" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
